@@ -14,12 +14,14 @@ Contact::~Contact()
 }
 t_details Contact::getContact()
 {
-    return {
-        first_name = this->first_name,
-        last_name = this->last_name,
-        nickname = this->nickname,
-        phone_number = this->phone_number,
-        darkest_secret = this->darkest_secret};
+    t_details details;
+
+    details.first_name = this->first_name;
+    details.last_name = this->last_name;
+    details.nickname = this->nickname;
+    details.phone_number = this->phone_number;
+    details.darkest_secret = this->darkest_secret;
+    return (details);
 }
 void Contact::setContact(std::string s[5])
 {

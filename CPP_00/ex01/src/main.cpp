@@ -1,7 +1,7 @@
 #include "PhoneBook.hpp"
 #include <iostream>
 
-int main(int argc, char const *argv[])
+int main()
 {
     PhoneBook   phoneBook;
     std::string command;
@@ -12,7 +12,7 @@ int main(int argc, char const *argv[])
         std::cin >> command;
         if (command == "ADD")
             phoneBook.add();
-        else
+        else if (command == "EXIT")
             break ;
     }
 
