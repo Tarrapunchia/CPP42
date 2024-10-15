@@ -13,9 +13,9 @@ public:
     PhoneBook();
     ~PhoneBook();
     void add();
+    void search();
 
 private:
-    // void search(std::string to_search);
 };
 
 #endif

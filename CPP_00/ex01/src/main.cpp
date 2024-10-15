@@ -12,6 +12,8 @@ int main()
         std::cin >> command;
         if (command == "ADD")
             phoneBook.add();
+        else if (command == "SEARCH")
+            phoneBook.search();
         else if (command == "EXIT")
             break ;
     }
