@@ -24,10 +24,12 @@ Fixed::~Fixed()
 int     Fixed::getRawBits() const 
 {
     std::cout << "getRawBits member function called" << std::endl;
-    return _value; };
+    return _value; 
+};
 
 void    Fixed::setRawBits( int value )
 {
     std::cout << "setRawBits member function called" << std::endl;
-    _value = value << _fractional_bits;
+    _value = value;
 }
+

@@ -1,15 +1,13 @@
 {
     "version": "0.2.0",
     "configurations": [
+        
         {
             "name": "C++ Launch",
             "type": "cppvsdbg", // Cambia in "cppdbg" se usi GDB
             "request": "launch",
-            "program": "${workspaceFolder}a.exe", // Modifica con il tuo programma
+            "program": "${workspaceFolder}/a.exe", // Modifica con il tuo programma
             "args": [
-                "./files/test", 
-                "lorem",
-                "CANE"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
