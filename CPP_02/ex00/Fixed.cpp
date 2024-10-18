@@ -32,4 +32,3 @@ void    Fixed::setRawBits( int value )
     std::cout << "setRawBits member function called" << std::endl;
     _value = value;
 }
-
