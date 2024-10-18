@@ -1,10 +1,8 @@
 SRC = 	main.cpp \
-		Fixed.cpp \
-		Point.cpp \
-		bsp.cpp
+		ClapTrap.cpp \
 
 OBJ = $(SRC:.cpp=.o)
-NAME = BSP
+NAME = ClapTrap
 GCC = g++
 FLAGS = -Wall -Werror -Wextra -std=c++98
 
