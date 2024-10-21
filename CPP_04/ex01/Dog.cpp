@@ -1,13 +1,13 @@
 #include "Dog.hpp"
 
-Dog::Dog(): Animal("Dog")
+Dog::Dog(): Animal("Dog"), _brain(new Brain)
 {
     std::cout << "\033[1;34m[DEBUG]: Dog default constructor called\033[0m" << std::endl;
 }
 
 Dog::Dog( const Dog& other ): Animal(other)
 {
-    std::cout << "\033[1;34m[DEBUG]: Dog default constructor called\033[0m" << std::endl;
+    std::cout << "\033[1;34m[DEBUG]: Dog copy constructor called\033[0m" << std::endl;
 }
 
 Dog &Dog::operator=( const Dog& e )
@@ -21,6 +21,7 @@ Dog &Dog::operator=( const Dog& e )
 Dog::~Dog()
 {
     std::cout << "\033[1;34m[DEBUG]: Dog destructor called\033[0m" << std::endl;
+    delete _brain;
 }
 
 void    Dog::makeSound( void ) const

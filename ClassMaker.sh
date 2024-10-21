@@ -25,6 +25,8 @@ for className in "$@"; do
 #ifndef ${upperSnakeCase}_HPP
 # define ${upperSnakeCase}_HPP
 
+# include <iostream>
+
 class $className
 {
 private:
@@ -45,20 +47,25 @@ EOL
 
 $className::$className()
 {
+    std::cout << "\033[1;34m[DEBUG]: $className default constructor called\033[0m" << std::endl;
 }
 
-$className::$className( const $className& other )
+$className::$className( const $className& other )//: PARENT(other)
 {
-//	values = other.values;
+    std::cout << "\033[1;34m[DEBUG]: $className default constructor called\033[0m" << std::endl;
 }
 
 $className &${className}::operator=( const $className& e )
 {
+    std::cout << "\033[1;34m[DEBUG]: $className op = overload called\033[0m" << std::endl;
+    //if (this != &e)
+    //    type = e.type;
     return (*this);
 }
 
 $className::~$className()
 {
+    std::cout << "\033[1;34m[DEBUG]: $className destructor called\033[0m" << std::endl;
 }
 EOL
 
