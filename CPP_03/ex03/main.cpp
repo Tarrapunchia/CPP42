@@ -13,7 +13,5 @@ int main(int argc, char const *argv[])
     diamondTrap.whoAmI();
     diamondTrap.attack(target);
 
-
-
     return 0;
 }

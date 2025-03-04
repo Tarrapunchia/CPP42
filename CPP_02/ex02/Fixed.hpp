@@ -24,14 +24,14 @@ public:
     bool  operator<=( const Fixed e ) const;
     bool  operator==( const Fixed e ) const;
     bool  operator!=( const Fixed e ) const;
-    float operator+( const Fixed e ) const;
-    float operator-( const Fixed e ) const;
-    float operator*( const Fixed e ) const;
-    float operator/( const Fixed e ) const;
-    Fixed &operator++();
-    Fixed &operator--();
-    Fixed &operator++( int );
-    Fixed &operator--( int );
+    Fixed operator+( const Fixed e ) const;
+    Fixed operator-( const Fixed e ) const;
+    Fixed operator*( const Fixed e ) const;
+    Fixed operator/( const Fixed e ) const;
+    Fixed operator++();
+    Fixed operator--();
+    Fixed operator++( int );
+    Fixed operator--( int );
 
     // Setters
     void    setRawBits ( int value );

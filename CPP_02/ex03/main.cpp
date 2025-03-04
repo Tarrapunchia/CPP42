@@ -1,4 +1,4 @@
-#include "Fixed.hpp"
+// #include "Fixed.hpp"
 #include "Point.hpp"
 #include <string>
 
@@ -14,7 +14,7 @@ int main( int argc, char **argv ) {
         const Point a;
         const Point b(10, 0);
         const Point c(0, 10);
-        const Point point(11, 1);
+        const Point point(2, 2);
         flag = bsp(a, b, c, point);
     }
     else

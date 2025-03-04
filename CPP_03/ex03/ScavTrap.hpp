@@ -14,6 +14,9 @@ public:
     ~ScavTrap( void );
 
     void    guardGate();
+
+    int getEnergy( void ) const { return _energyPoints; };
+    int getDamage( void ) const { return _attackDamage; };
 };
 
 #endif

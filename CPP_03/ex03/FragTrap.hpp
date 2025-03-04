@@ -13,6 +13,9 @@ public:
     ~FragTrap( void );
 
     void highFiveGuys( void ) const;
+
+    int getEnergy( void ) const { return _energyPoints; };
+    int getDamage( void ) const { return _attackDamage; };
 };
 
 #endif

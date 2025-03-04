@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fzucconi <fzucconi@student.42firenze.it    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/04 17:46:32 by fzucconi          #+#    #+#             */
+/*   Updated: 2025/03/04 17:46:33 by fzucconi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FIXED_HPP
 # define FIXED_HPP
 # include <iostream>
@@ -14,7 +26,7 @@ public:
     ~Fixed( void );
 
     int     getRawBits ( void ) const;
-    void    setRawBits ( int value );
+    void    setRawBits ( int const raw );
 };
 
 

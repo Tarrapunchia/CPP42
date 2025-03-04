@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fzucconi <fzucconi@student.42firenze.it    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/04 17:46:24 by fzucconi          #+#    #+#             */
+/*   Updated: 2025/03/04 17:46:25 by fzucconi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Fixed.hpp"
 
 Fixed::Fixed(): _value(0)
@@ -14,11 +26,14 @@ Fixed::Fixed( const Fixed& other )
 Fixed &Fixed::operator=( const Fixed& e )
 {
     std::cout << "Copy assignment operator called" << std::endl;
+    if (this != &e)
+        _value = e._value;
     return (*this);
 }
 
 Fixed::~Fixed()
 {
+    std::cout << "Destructor called" << std::endl;
 }
 
 int     Fixed::getRawBits() const 
@@ -27,8 +42,8 @@ int     Fixed::getRawBits() const
     return _value; 
 };
 
-void    Fixed::setRawBits( int value )
+void    Fixed::setRawBits( int const raw )
 {
     std::cout << "setRawBits member function called" << std::endl;
-    _value = value;
+    _value = raw;
 }

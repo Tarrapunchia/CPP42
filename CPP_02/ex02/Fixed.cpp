@@ -41,37 +41,37 @@ bool Fixed::operator==(const Fixed e) const { return (this->_value == e._value);
 bool Fixed::operator!=(const Fixed e) const { return (this->_value != e._value); }
 
 // Arithmetic op overload
-float Fixed::operator+( const Fixed e ) const { return (this->toFloat() + e.toFloat()); }
-float Fixed::operator-( const Fixed e ) const { return (this->toFloat() - e.toFloat()); }
-float Fixed::operator*( const Fixed e ) const { return (this->toFloat() * e.toFloat()); }
-float Fixed::operator/( const Fixed e ) const { return (this->toFloat() / e.toFloat()); }
+Fixed Fixed::operator+( const Fixed e ) const { return Fixed(this->toFloat() + e.toFloat()); }
+Fixed Fixed::operator-( const Fixed e ) const { return Fixed(this->toFloat() - e.toFloat()); }
+Fixed Fixed::operator*( const Fixed e ) const { return Fixed(this->toFloat() * e.toFloat()); }
+Fixed Fixed::operator/( const Fixed e ) const { return Fixed(this->toFloat() / e.toFloat()); }
 
 // Increment/Decrement op overload
 // preincremento
-Fixed &Fixed::operator++()
+Fixed Fixed::operator++()
 {
     _value++;
     return (*this);
 }
 // postincremento
-Fixed &Fixed::operator++( int )
+Fixed Fixed::operator++( int )
 {
-    Fixed *buf = this;
+    Fixed buf(*this);
     _value++;
-    return *buf;
+    return buf;
 }
 // preincremento
-Fixed &Fixed::operator--()
+Fixed Fixed::operator--()
 {
     _value--;
     return (*this);
 }
 // postincremento
-Fixed &Fixed::operator--( int )
+Fixed Fixed::operator--( int )
 {
-    Fixed *buf = this;
+    Fixed buf(*this);
     _value--;
-    return *buf;
+    return buf;
 }
 
 Fixed::~Fixed()
