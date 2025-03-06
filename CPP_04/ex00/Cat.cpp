@@ -1,7 +1,9 @@
 #include "Cat.hpp"
+#include "Animal.hpp"
 
-Cat::Cat(): Animal("Cat")
+Cat::Cat(): Animal()
 {
+    type = "Cat";
     std::cout << "\033[1;34m[DEBUG]: Cat default constructor called\033[0m" << std::endl;
 }
 
