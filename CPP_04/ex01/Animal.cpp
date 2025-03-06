@@ -2,12 +2,8 @@
 
 Animal::Animal()
 {
+    type = "default";
     std::cout << "\033[1;34m[DEBUG]: Animal default constructor called\033[0m" << std::endl;
-}
-
-Animal::Animal( std::string type ): type(type)
-{
-    std::cout << "\033[1;34m[DEBUG]: Animal constructor called with type\033[0m" << std::endl;
 }
 
 Animal::Animal( const Animal& other ): type(other.type)

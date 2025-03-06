@@ -9,6 +9,7 @@ int main(int argc, char const *argv[])
 
     for (size_t i = 0; i < 50; i++)
     {
+        std::cout << "***********************************************" << std::endl;
         if (i % 2)
             animalArray[i] = new Cat();
         else
@@ -17,6 +18,7 @@ int main(int argc, char const *argv[])
 
     for (size_t i = 0; i < 50; i++)
     {
+        std::cout << "***********************************************" << std::endl;
         delete animalArray[i];
     }
 

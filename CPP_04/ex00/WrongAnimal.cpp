@@ -2,6 +2,7 @@
 
 WrongAnimal::WrongAnimal()
 {
+    type = "WrongAnimal";
     std::cout << "\033[1;34m[DEBUG]: WrongAnimal default constructor called\033[0m" << std::endl;
 }
 
