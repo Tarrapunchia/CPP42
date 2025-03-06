@@ -2,8 +2,8 @@
 
 int main(int argc, char const *argv[])
 {
-    if (argc < 2) {
-        std::cerr << "Usage: " << argv[0] << " <name>" << std::endl;
+    if (argc < 3) {
+        std::cerr << "Usage: " << argv[0] << " <name Clap> <name Scav>" << std::endl;
         return 1;
     }
 
@@ -13,9 +13,10 @@ int main(int argc, char const *argv[])
     std::cout << "ClapTrap Acts!" << std::endl;
     clapTrap.attack("a target");
 
-    ScavTrap    scava("Scavona");
+    ScavTrap    scavTrap(argv[2]);
 
-    scava.attack("gesu");
+    scavTrap.attack("a target");
+    scavTrap.guardGate();
 
     return 0;
 }

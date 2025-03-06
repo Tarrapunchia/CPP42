@@ -21,9 +21,7 @@ ScavTrap &ScavTrap::operator=( const ScavTrap& e )
 {
     return (*this);
 }
-ScavTrap::~ScavTrap()
-{
-}
+ScavTrap::~ScavTrap() = default;
 
 void ScavTrap::guardGate()
 {

@@ -10,8 +10,11 @@ int main(int argc, char const *argv[])
     ClapTrap clapTrap(argv[1]);
     const std::string target = "a target";
 
-    std::cout << "ClapTrap Acts!" << std::endl;
-    clapTrap.attack("a target"); 
+    for (int i = 0; i < 12; i++) {
+        std::cout << "ClapTrap Acts!" << std::endl;
+        clapTrap.attack("a target");
+    }
+
 
     return 0;
 }

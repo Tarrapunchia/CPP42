@@ -19,6 +19,7 @@ ClapTrap::ClapTrap( const ClapTrap& other ): _name(other._name)
 }
 ClapTrap &ClapTrap::operator=( const ClapTrap& e )
 {
+    std::cout << "Copy operator" << std::endl;
     if (this != &e)
     {
         this->_name = e._name;
@@ -38,6 +39,11 @@ void    ClapTrap::attack( const std::string& target )
     if (_energyPoints <= 0)
     {
         std::cout << "No energy points left." << std::endl;
+        return ;
+    }
+    if (_hitPoints <= 0)
+    {
+        std::cout << "No hit points left." << std::endl;
         return ;
     }
     std::cout << "ClapTrap " << _name << " attacks " << target
@@ -62,6 +68,11 @@ void ClapTrap::beRepaired(unsigned int amount)
     if (_energyPoints <= 0)
     {
         std::cout << "No energy points left." << std::endl;
+        return ;
+    }
+    if (_hitPoints <= 0)
+    {
+        std::cout << "No hit points left." << std::endl;
         return ;
     }
     _hitPoints += amount;
