@@ -8,14 +8,14 @@ private:
 
 public:
     FragTrap( void );
+    FragTrap( const std::string name );
     FragTrap( const FragTrap& other );
     FragTrap &operator=( const FragTrap& e );
     ~FragTrap( void );
 
     void highFiveGuys( void ) const;
-
-    int getEnergy( void ) const { return _energyPoints; };
-    int getDamage( void ) const { return _attackDamage; };
+    int  getHitPoints() const;
+    int  getDamage() const;
 };
 
 #endif

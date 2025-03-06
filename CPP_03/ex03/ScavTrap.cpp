@@ -5,29 +5,27 @@ ScavTrap::ScavTrap(): ClapTrap()
     _hitPoints = 100;
     _energyPoints = 50;
     _attackDamage = 20;
-    std::cout << "ScavTrap default constructor called" << std::endl;
 }
 ScavTrap::ScavTrap( std::string name ): ClapTrap(name)
 {
     _hitPoints = 100;
     _energyPoints = 50;
     _attackDamage = 20;
-    std::cout << "ScavTrap constructor with name called" << std::endl;
-
 }
 
 ScavTrap::ScavTrap( const ScavTrap& other )
 {
-//	values = other.values;
+    std::cout << "ScavTrap copy constructor called" << std::endl;
+    *this = other;
 }
-ScavTrap &ScavTrap::operator=( const ScavTrap& e )
+ScavTrap &ScavTrap::operator=( const ScavTrap& other )
 {
+    std::cout << "ScavTrap assignment operator called" << std::endl;
+    if (this != &other) { ClapTrap::operator=(other); }
     return (*this);
 }
-ScavTrap::~ScavTrap()
-{
-    std::cout << "ScavTrap destructor called" << std::endl;
-}
+
+ScavTrap::~ScavTrap() = default;
 
 void ScavTrap::guardGate()
 {

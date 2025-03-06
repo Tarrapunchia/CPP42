@@ -15,13 +15,21 @@ int main(int argc, char const *argv[])
     clapTrap.attack("a target");
 
     ScavTrap    scava("Scavona");
+    ScavTrap    s = scava;
 
     scava.attack("gesu");
+    s.attack("un amico di gesu");
 
-    FragTrap    frag;
+    FragTrap    frag("gianni");
+    FragTrap    f = frag;
+    FragTrap    f2(frag);
 
     frag.attack("fragged");
     frag.highFiveGuys();
+    f.attack("fragged f");
+    f.highFiveGuys();
+    f2.attack("fragged f2");
+    f2.highFiveGuys();
 
     return 0;
 }

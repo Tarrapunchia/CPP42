@@ -15,12 +15,16 @@ ScavTrap::ScavTrap( std::string name ): ClapTrap(name)
 
 ScavTrap::ScavTrap( const ScavTrap& other )
 {
-//	values = other.values;
+    std::cout << "ScavTrap copy constructor called" << std::endl;
+    *this = other;
 }
-ScavTrap &ScavTrap::operator=( const ScavTrap& e )
+ScavTrap &ScavTrap::operator=( const ScavTrap& other )
 {
+    std::cout << "ScavTrap assignment operator called" << std::endl;
+    if (this != &other) { ClapTrap::operator=(other); }
     return (*this);
 }
+
 ScavTrap::~ScavTrap() = default;
 
 void ScavTrap::guardGate()

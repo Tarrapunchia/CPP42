@@ -1,33 +1,53 @@
 #include "DiamondTrap.hpp"
+#include "ClapTrap.hpp"
 
 DiamondTrap::DiamondTrap() : ClapTrap("Diamond_clap_name"), _name("Diamond")
 {
-    _hitPoints = FragTrap::_hitPoints;
+    FragTrap tempFrag;
+    
+    _hitPoints = tempFrag.getHitPoints();
+    _attackDamage = tempFrag.getDamage();      
     _energyPoints = ScavTrap::_energyPoints;
-    _attackDamage = FragTrap::_attackDamage;
+    std::cout << "HP: " << _hitPoints << std::endl;
+    std::cout << "ENERGY: " << _energyPoints << std::endl;
+    std::cout << "ATTACKDAMAGE: " << _attackDamage << std::endl;
 
     std::cout << "DiamondTrap default constructor called" << std::endl;
 }
 
-DiamondTrap::DiamondTrap(std::string name) : _name(name), ScavTrap(), FragTrap()
+DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), ScavTrap(), _name(name)
 {
-    _hitPoints = FragTrap::_hitPoints;
-    _energyPoints = ScavTrap::getEnergy();
-    _attackDamage = FragTrap::getDamage();
-    std::cout << "HP: " << _hitPoints << std::endl << FragTrap::getDamage();
+    FragTrap tempFrag("temp");
+    
+    _hitPoints = tempFrag.getHitPoints();
+    _attackDamage = tempFrag.getDamage();      
+    _energyPoints = ScavTrap::_energyPoints;
+    std::cout << "HP: " << _hitPoints << std::endl;
     std::cout << "ENERGY: " << _energyPoints << std::endl;
     std::cout << "ATTACKDAMAGE: " << _attackDamage << std::endl;
     std::cout << "DiamondTrap named constructor called for " << name << std::endl;
 }
 
-DiamondTrap::DiamondTrap( const DiamondTrap& other )
+DiamondTrap::DiamondTrap(const DiamondTrap& other)
+    : ClapTrap(other._name + "_clap_name"),
+      ScavTrap(other._name),
+      _name(other._name)
 {
-//	values = other.values;
+    std::cout << "DiamondTrap copy constructor called for " << _name << std::endl;
 }
-DiamondTrap &DiamondTrap::operator=( const DiamondTrap& e )
+
+DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other)
 {
-    return (*this);
+    if (this != &other) {
+        ClapTrap::operator=(other);
+        ScavTrap::operator=(other);
+        
+        _name = other._name;
+    }
+    std::cout << "DiamondTrap assign operator called for " << _name << std::endl;
+    return *this;
 }
+
 DiamondTrap::~DiamondTrap()
 {
     std::cout << "Diamond destructor called" << std::endl;
