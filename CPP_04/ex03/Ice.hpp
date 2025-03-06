@@ -5,16 +5,16 @@
 
 class Ice: public AMateria
 {
-private:
-
-public:
+    public:
     Ice( void );
     Ice( const Ice& other );
-    Ice &operator=( const Ice& e );
+    Ice &operator=( const Ice& other );
+    
     ~Ice( void );
-
-    Ice* clone() const;
+    
     void use(ICharacter& target);
+    AMateria* clone() const;
+
 };
 
 #endif

@@ -2,13 +2,14 @@ SRC = \
         Character.cpp \
         Cure.cpp \
         Ice.cpp \
-        ICharacter.cpp \
-        MaterialSource.cpp \
+        AMateria.cpp \
+        MateriaSource.cpp \
+		main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 NAME = InterfaceAndRecap
 GCC = g++
-FLAGS = -Wall -Werror -Wextra -std=c++98
+FLAGS = -Wall -Werror -Wextra -std=c++98 -g
 
 all: $(NAME)
 

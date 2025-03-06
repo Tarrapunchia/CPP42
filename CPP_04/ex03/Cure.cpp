@@ -1,31 +1,21 @@
 #include "Cure.hpp"
 
-Cure::Cure() : AMateria("cure")
-{
-    std::cout << "\033[1;34m[DEBUG]: Cure default constructor called\033[0m" << std::endl;
-}
+Cure::Cure( void ): AMateria("cure") {}
 
-Cure::Cure( const Cure& other )//: PARENT(other)
-{
-    std::cout << "\033[1;34m[DEBUG]: Cure default constructor called\033[0m" << std::endl;
-}
+Cure::Cure( const Cure& other): AMateria(other) {}
 
-Cure &Cure::operator=( const Cure& e )
+Cure& Cure::operator=( const Cure& other)
 {
-    std::cout << "\033[1;34m[DEBUG]: Cure op = overload called\033[0m" << std::endl;
-    //if (this != &e)
-    //    type = e.type;
+    if (this != &other)
+        this->_type = other._type;
     return (*this);
 }
 
-Cure::~Cure()
-{
-    std::cout << "\033[1;34m[DEBUG]: Cure destructor called\033[0m" << std::endl;
-}
+AMateria* Cure::clone( void ) const { return (new Cure()); }
 
-AMateria* Cure::clone() const { return (new Cure()); }
-
-void Cure::use(ICharacter &target)
+void Cure::use( ICharacter& target)
 {
     std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
 }
+
+Cure::~Cure( void ) {}
