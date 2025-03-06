@@ -1,21 +1,17 @@
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 
-Animal::Animal()
+AAnimal::AAnimal()
 {
+    type = "default";
     std::cout << "\033[1;34m[DEBUG]: Animal default constructor called\033[0m" << std::endl;
 }
 
-Animal::Animal( std::string type ): type(type)
-{
-    std::cout << "\033[1;34m[DEBUG]: Animal constructor called with type\033[0m" << std::endl;
-}
-
-Animal::Animal( const Animal& other ): type(other.type)
+AAnimal::AAnimal( const AAnimal& other ): type(other.type)
 {
     std::cout << "\033[1;34m[DEBUG]: Animal copy constructor called\033[0m" << std::endl;
 }
 
-Animal &Animal::operator=( const Animal& e )
+AAnimal &AAnimal::operator=( const AAnimal& e )
 {
     std::cout << "\033[1;34m[DEBUG]: Animal op = override\033[0m" << std::endl;
     if (this != &e)
@@ -23,9 +19,14 @@ Animal &Animal::operator=( const Animal& e )
     return (*this);
 }
 
-Animal::~Animal()
+AAnimal::~AAnimal()
 {
     std::cout << "\033[1;34m[DEBUG]: Animal destructor called\033[0m" << std::endl;
 }
 
-std::string Animal::getType( void ) const { return type; }
+void AAnimal::makeSound(void) const
+{
+    std::cout << "Generic Animal Sound, like \"Blargh\"" << std::endl;
+}
+
+std::string AAnimal::getType( void ) const { return type; }

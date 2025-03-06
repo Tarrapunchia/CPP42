@@ -4,16 +4,15 @@
 # include <iostream>
 # include "Brain.hpp"
 
-class Animal
+class AAnimal
 {
 protected:
     std::string type;
 public:
-    Animal( void );
-    Animal( std::string type );
-    Animal( const Animal& other );
-    Animal &operator=( const Animal& e );
-    virtual ~Animal( void );
+    AAnimal( void );
+    AAnimal( const AAnimal& other );
+    AAnimal &operator=( const AAnimal& e );
+    virtual ~AAnimal( void );
 
     // methods
     virtual void    makeSound( void ) const = 0;

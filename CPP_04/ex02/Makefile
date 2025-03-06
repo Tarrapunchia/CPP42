@@ -1,5 +1,5 @@
 SRC = \
-        Animal.cpp \
+        AAnimal.cpp \
         Cat.cpp \
         Dog.cpp \
         WrongAnimal.cpp \
