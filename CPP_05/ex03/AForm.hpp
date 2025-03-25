@@ -36,7 +36,6 @@ class AForm {
     };
 
     // utils
-    virtual void    check_grade(const Bureaucrat & bur) final;
     virtual void    beSigned(const Bureaucrat & bur);
     virtual void    execute(Bureaucrat const & executor) = 0;
 };

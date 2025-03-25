@@ -44,17 +44,6 @@ void    AForm::beSigned(const Bureaucrat & bur) {
     }
 }
 
-void AForm::check_grade(const Bureaucrat & bur) {
-    if (!get_is_signed())
-        std::cout << "Error: Form is not signed yet." << std::endl;
-    if (get_exec_grade() < bur.getGrade())
-    {
-        std::cout << bur << "couldn't execute " << *this
-        << "because: grade too low" << std::endl;
-        throw AForm::GradeTooLowException();
-    }
-}
-
 std::ostream& operator<<(std::ostream & os, const AForm & form) {
     os << "Form:"
     << "\t\nname:\t" << form.get_name()

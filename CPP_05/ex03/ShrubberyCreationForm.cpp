@@ -14,7 +14,14 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm & other
 :AForm("ShrubberyCreationForm", 145, 137), _target(other._target) {}
 
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) {
-    check_grade(executor);
+    if (!get_is_signed())
+        std::cout << "Error: Form is not signed yet." << std::endl;
+    if (get_exec_grade() < executor.getGrade())
+    {
+        std::cout << executor << "couldn't execute " << *this
+        << "because: grade too low" << std::endl;
+        throw AForm::GradeTooLowException();
+    }
     std::ofstream file(_target);
     if (!file.is_open()) {
         throw std::ios_base::failure("Failed to open the file.");
