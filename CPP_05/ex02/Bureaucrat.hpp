@@ -41,6 +41,7 @@ class Bureaucrat
 
     // utils
     void    signForm(AForm & form) const;
+    void    executeForm(AForm & form) const;
 
 };
 // overload

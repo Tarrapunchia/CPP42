@@ -17,12 +17,12 @@ int main()
     AForm *robotomy = new RobotomyRequestForm("Bender");
     AForm *trees = new ShrubberyCreationForm("trees.txt");
     try {
-        presidential->beSigned(N1);
-        presidential->execute(N1);
-        robotomy->beSigned(N1);
-        robotomy->execute(N1);
-        trees->beSigned(N1);
-        trees->execute(ll);
+        N1.signForm(*presidential);
+        N1.executeForm(*presidential);
+        N1.signForm(*robotomy);
+        N1.executeForm(*robotomy);
+        N1.signForm(*trees);
+        N1.executeForm(*trees);
         delete presidential;
         delete robotomy;
         delete trees;
