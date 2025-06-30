@@ -1,13 +1,28 @@
 #include "Serializer.hpp"
-#include <cstdint>
 
-uintptr_t Serializer::serialize (Data *ptr)
+Serializer::Serializer()
 {
-    return reinterpret_cast<uintptr_t>(ptr);
 }
 
+Serializer::Serializer(const Serializer &)
+{
+}
 
-Data* Serializer::deserialize(uintptr_t raw)
+Serializer &Serializer::operator=(const Serializer &)
+{
+    return *this;
+}
+
+Serializer::~Serializer()
+{
+}
+
+void * Serializer::serialize(Data *ptr)
+{
+    return reinterpret_cast<void *>(ptr);
+}
+
+Data* Serializer::deserialize(void * raw)
 {
     return reinterpret_cast<Data *>(raw);
 }

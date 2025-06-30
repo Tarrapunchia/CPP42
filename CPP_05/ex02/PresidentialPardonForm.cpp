@@ -17,3 +17,13 @@ void PresidentialPardonForm::execute(Bureaucrat const & executor) {
     check_grade(executor);
     std::cout << _target << " has been pardoned by Zaphod Beeblebrox.\n" << std::endl;
 }
+
+PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm & other)
+{
+    if (this == &other) return *this;
+    _target = other._target;
+
+    return *this;
+}
+
+PresidentialPardonForm::~PresidentialPardonForm() {};

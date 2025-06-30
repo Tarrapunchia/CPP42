@@ -6,15 +6,16 @@ class Bureaucrat;
 class Form {
     private:
     const std::string   _NAME;
-    bool                _is_signed {false};
+    bool                _is_signed;
     const int           _SIGN_GRADE;           
     const int           _EXEC_GRADE;
-
+    
     public:
     Form();
     Form(const std::string & name, int sign_grade, int exec_grade);
     Form(const Form & other);
-    ~Form() {};
+    Form &operator=(const Form &);
+    ~Form();
 
     // getters
     std::string get_name() const;
@@ -26,13 +27,13 @@ class Form {
     class GradeTooHighException : public std::exception
     {
         public:
-            const char* what() const noexcept;
+            const char* what() const throw();
     };
 
     class GradeTooLowException : public std::exception
     {
         public:
-            const char* what() const noexcept;
+            const char* what() const throw();
     };
 
     // utils

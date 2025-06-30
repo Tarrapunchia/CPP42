@@ -47,7 +47,7 @@ public:
     }
 
     T& operator[](int index) {
-        if (index < 0 || index >= _size)
+        if (index < 0 || index >= static_cast<int>(_size))
             throw std::out_of_range("Out of range operation");
         return _array[index];
     }

@@ -1,9 +1,8 @@
-SRC = \
-        main.cpp \
-		Bureaucrat.cpp \
+SRC =	Base.cpp \
+		main.cpp
 
 OBJ = $(SRC:.cpp=.o)
-NAME = Bureaucrat
+NAME = Base
 GCC = g++
 FLAGS = -Wall -Werror -Wextra -std=c++98
 
@@ -11,6 +10,9 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(GCC) $(FLAGS) $(OBJ) -o $(NAME)
+
+%.o: %.cpp
+	$(GCC) $(FLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)

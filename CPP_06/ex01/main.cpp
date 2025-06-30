@@ -1,12 +1,9 @@
 #include "Serializer.hpp"
-#include <cstddef>
-#include <cstdint>
 
-int main(int argc, const char** argv) {
-
+int main() {
     Data data(12, "Gianni");
 
-    uintptr_t ptr = Serializer::serialize(&data);
+    void *ptr = Serializer::serialize(&data);
 
     Data *dptr = NULL;
     dptr = Serializer::deserialize(ptr);

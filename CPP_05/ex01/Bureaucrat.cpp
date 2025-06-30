@@ -1,5 +1,4 @@
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
 #include <iostream>
 
 Bureaucrat::Bureaucrat( void ): _name("Lowliest form of life"), _grade(150) {}
@@ -20,7 +19,7 @@ Bureaucrat& Bureaucrat::operator=( const Bureaucrat& other )
     if (this != &other)
     {
         _grade = other._grade;
-        _name = other._name;
+        // _name = other._name;
     }
     return (*this);
 }
@@ -52,12 +51,8 @@ void Bureaucrat::decreaseGrade()
     _grade++;
 }
 
-const char* Bureaucrat::GradeTooHighException::what() const noexcept { return ("GradeTooHighException"); }
-const char* Bureaucrat::GradeTooLowException::what() const noexcept { return ("GradeTooLowException"); }
-
-void    Bureaucrat::signForm(Form & form) const {
-    form.beSigned(*this);
-}
+const char* Bureaucrat::GradeTooHighException::what() const throw() { return ("GradeTooHighException"); }
+const char* Bureaucrat::GradeTooLowException::what() const throw() { return ("GradeTooLowException"); }
 
 std::ostream &operator<<(std::ostream & out, const Bureaucrat & bur)
 {

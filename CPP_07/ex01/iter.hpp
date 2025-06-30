@@ -13,7 +13,7 @@ void iter(A arr, unsigned len, F fn)
 template <typename T>
 void print(const T& elem)
 {
-    std::cout << elem + " ";
+    std::cout << elem << " " ;
 }
 
 #endif

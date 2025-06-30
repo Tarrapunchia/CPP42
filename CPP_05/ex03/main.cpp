@@ -4,6 +4,7 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 int main()
 {
@@ -13,16 +14,22 @@ int main()
     Bureaucrat mp("Morgan Proctor", 19);
     Bureaucrat wv("Warden Vogel", 135);
     Bureaucrat ll;
-    AForm *presidential = new PresidentialPardonForm("Zaphod Beeblebrox");
-    AForm *robotomy = new RobotomyRequestForm("Bender");
-    AForm *trees = new ShrubberyCreationForm("trees.txt");
+    Intern intern;
+    AForm *presidential;
+    AForm *robotomy;
+    AForm *trees;
     try {
+        presidential = intern.makeForm("pardon request", "Zaphod Beeblebrox");
+        robotomy = intern.makeForm("robotomy request", "Bender");
+        trees = intern.makeForm("shrubbery request", "trees.txt");
         N1.signForm(*presidential);
         N1.executeForm(*presidential);
         N1.signForm(*robotomy);
         N1.executeForm(*robotomy);
         N1.signForm(*trees);
         N1.executeForm(*trees);
+        intern.makeForm("non existent", "bombolo");
+
         delete presidential;
         delete robotomy;
         delete trees;

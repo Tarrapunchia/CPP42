@@ -10,6 +10,9 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(GCC) $(FLAGS) $(OBJ) -o $(NAME)
 
+%.o: %.cpp
+	$(GCC) $(FLAGS) -c $< -o $@
+
 clean:
 	rm -f $(OBJ)
 

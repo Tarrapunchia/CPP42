@@ -9,6 +9,8 @@ int main(int argc, const char** argv) {
     // ScalarConverter::convert("100.0");
     try
     {
+        if (argc != 2)
+            throw std::logic_error("Wrong number of arguments.");
         ScalarConverter::convert(argv[1]);
     }
     catch (const std::exception& e)

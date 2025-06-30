@@ -3,13 +3,11 @@
 
 # include <iostream>
 
-class Form;
-
 class Bureaucrat
 {
     private:
-    std::string   _name;
-    int           _grade;
+    const std::string   _name;
+    int                 _grade;
 
     public:
     Bureaucrat( void );
@@ -30,17 +28,14 @@ class Bureaucrat
     class GradeTooHighException : public std::exception
     {
         public:
-            const char* what() const noexcept;
+            const char* what() const throw();
     };
 
     class GradeTooLowException : public std::exception
     {
         public:
-            const char* what() const noexcept;
+            const char* what() const throw();
     };
-
-    // utils
-    void    signForm(Form & form) const;
 
 };
 // overload

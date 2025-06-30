@@ -4,12 +4,13 @@ SRC = \
 		AForm.cpp \
 		ShrubberyCreationForm.cpp \
 		RobotomyRequestForm.cpp \
-		PresidentialPardonForm.cpp
+		PresidentialPardonForm.cpp \
+		Intern.cpp
 
 
 OBJ = $(SRC:.cpp=.o)
 NAME = Bureaucrat
-GCC = g++
+GCC = c++
 FLAGS = -Wall -Werror -Wextra -std=c++98
 
 all: $(NAME)
@@ -17,12 +18,14 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(GCC) $(FLAGS) $(OBJ) -o $(NAME)
 
+%.o: %.cpp
+	$(GCC) $(FLAGS) -c $< -o $@
+
 clean:
 	rm -f $(OBJ)
 
 fclean: clean
 	rm -rf $(NAME)
-	rm -f *.txt
 
 re: fclean $(NAME)
 

@@ -3,12 +3,15 @@ SRC =	main.cpp
 OBJ = $(SRC:.cpp=.o)
 NAME = Templates
 GCC = g++
-FLAGS = -Wall -Werror -Wextra -std=c++98
+FLAGS = -Wall -Werror -Wextra -std=c++98 -g
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(GCC) $(FLAGS) $(OBJ) -o $(NAME)
+
+%.o: %.cpp
+	$(GCC) $(FLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)

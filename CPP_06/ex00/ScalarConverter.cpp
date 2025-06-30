@@ -1,11 +1,10 @@
 #include "ScalarConverter.hpp"
-#include <algorithm>
 #include <cctype>
 #include <cstdlib>
 #include <limits>
 #include <string>
 
-const bool cycle(const std::string &str, const int &i, bool isInt)
+bool cycle(const std::string &str, const int &i, bool isInt)
 {
     if (isInt)
     {
@@ -18,7 +17,7 @@ const bool cycle(const std::string &str, const int &i, bool isInt)
     else
     {
         size_t end = 0;
-        if (str.back() == 'f')
+        if (*(str.end() - 1) == 'f')
             end++;
         for(std::string::const_iterator it = str.begin() + i; it != str.end() - end; it++)
         {
@@ -29,48 +28,62 @@ const bool cycle(const std::string &str, const int &i, bool isInt)
     return true;
 }
 
-const TypeFlag getType(const std::string &str)
+int count(std::string::const_iterator begin, const std::string::const_iterator & end, char character)
+{
+    int counter = 0;
+
+    while (begin != end)
+    {
+        if (*begin == character)
+            counter++;
+        begin++;
+    }
+
+    return counter;
+}
+
+TypeFlag getType(const std::string &str)
 {
     // special (nan etc)
     if (str == "nan" || str == "nanf" || str == "+inf" || str == "-inf"
         ||  str == "+inff" || str == "-inff")
-        return TypeFlag::Special;
+        return Special;
 
     // char
     if ((str.size() == 1 && !std::isdigit(str.at(0)))
-        || (str.size() == 3 && str.front() == '\'' && str.back() == '\''))
-        return TypeFlag::Char;
+        || (str.size() == 3 && *(str.begin()) == '\'' && *(str.end() - 1) == '\''))
+        return Char;
     
     // int
     size_t i = 0;
     if (str[i] == '+' || str[i] == '-')
         i++;
     if (i < str.size() && cycle(str, i, true))
-        return TypeFlag::Int;
+        return Int;
 
     // float
-    if (str.back() == 'f')
+    if (*(str.end() - 1) == 'f')
     {
         if (str.find('.') != std::string::npos
-            && std::count(str.begin(), str.end(), '.') == 1
+            && count(str.begin(), str.end(), '.') == 1
             && cycle(str, i, false))
-                return (TypeFlag::Float);
+                return (Float);
     }
 
     // double
     if (str.find('.') != std::string::npos
-        && std::count(str.begin(), str.end(), '.') == 1
+        && count(str.begin(), str.end(), '.') == 1
         && cycle(str, i, false))
-            return (TypeFlag::Double);
+            return (Double);
 
 
-    return TypeFlag::Error;
+    return Error;
 }
 
-const void printChar(const std::string &str)
+void printChar(const std::string &str)
 {
     size_t i = 0;
-    if (str.front() == '\'')
+    if (*(str.begin()) == '\'')
         i = 1;
     std::cout << "char: " << str[i] << std::endl;
     std::cout << "int: " << static_cast<int>(str[i]) << std::endl;
@@ -78,28 +91,28 @@ const void printChar(const std::string &str)
     std::cout << "double: " << static_cast<int>(str[i]) << ".0" << std::endl;
 }
 
-const void printInt(const std::string &str)
+void printInt(const std::string &str)
 {
-    long nmb = std::strtold(str.c_str(), NULL);
+    double nmb = std::strtold(str.c_str(), NULL);
     if (std::isprint(static_cast<char>(nmb)) && nmb <= 127 && nmb >= -128)
         std::cout << "char: " << static_cast<char>(nmb) << std::endl;
     else
         std::cout << "char: Non Printable" << std::endl;
-    if (nmb > std::numeric_limits<int>::max() || nmb < std::numeric_limits<int>::min())
+    if (nmb > std::numeric_limits<int>::max() || nmb < (std::numeric_limits<int>::max() + 1))
         std::cout << "int: " << "Out of bounds" << std::endl;
     else
         std::cout << "int: " << static_cast<int>(nmb) << std::endl;
-    if (nmb > std::numeric_limits<float>::max() || nmb < std::numeric_limits<float>::min())
+    if (nmb > std::numeric_limits<float>::max() || nmb < (-std::numeric_limits<float>::max()))
         std::cout << "float: " << "Out of bounds" << std::endl;
     else
         std::cout << "float: " << static_cast<float>(nmb) << ".0f" << std::endl;
-    if (nmb > std::numeric_limits<double>::max() || nmb < std::numeric_limits<double>::min())
+    if (nmb > std::numeric_limits<double>::max() || nmb < (-std::numeric_limits<double>::max()))
         std::cout << "double: " << "Out of bounds" << std::endl;
     else
         std::cout << "double: " << static_cast<double>(nmb) << ".0" << std::endl;
 }
 
-const void printDouble(const std::string &str)
+void printDouble(const std::string &str)
 {
     double nmb = std::strtold(str.c_str(), NULL);
     std::string suffix("");
@@ -109,21 +122,21 @@ const void printDouble(const std::string &str)
         std::cout << "char: " << static_cast<char>(nmb) << std::endl;
     else
         std::cout << "char: Non Printable" << std::endl;
-    if (nmb > std::numeric_limits<int>::max() || nmb < std::numeric_limits<int>::min())
+    if (nmb > std::numeric_limits<int>::max() || nmb < (std::numeric_limits<int>::max() + 1))
         std::cout << "int: " << "Out of bounds" << std::endl;
     else
-        std::cout << "int: " << nmb << std::endl;
-    if (nmb > std::numeric_limits<float>::max() || nmb < std::numeric_limits<float>::min())
+        std::cout << "int: " << static_cast<int>(nmb) << std::endl;
+    if (nmb > std::numeric_limits<float>::max() || nmb < (-std::numeric_limits<float>::max()))
         std::cout << "float: " << "Out of bounds" << std::endl;
     else
         std::cout << "float: " << static_cast<float>(nmb) << suffix << "f" << std::endl;
-    if (nmb > std::numeric_limits<double>::max() || nmb < std::numeric_limits<double>::min())
+    if (nmb > std::numeric_limits<double>::max() || nmb < (std::numeric_limits<double>::max()))
         std::cout << "double: " << "Out of bounds" << std::endl;
     else
         std::cout << "double: " << static_cast<double>(nmb) << suffix << std::endl;
 }
 
-const void printFloat(const std::string &str)
+void printFloat(const std::string &str)
 {
     double nmb = std::strtod(str.c_str(), NULL);
     std::string suffix("");
@@ -133,26 +146,43 @@ const void printFloat(const std::string &str)
         std::cout << "char: " << static_cast<char>(nmb) << std::endl;
     else
         std::cout << "char: Non Printable" << std::endl;
-    if (nmb > std::numeric_limits<int>::max() || nmb < std::numeric_limits<int>::min())
+    if (nmb > std::numeric_limits<int>::max() || nmb < (std::numeric_limits<int>::max() + 1))
         std::cout << "int: " << "Out of bounds" << std::endl;
     else
-        std::cout << "int: " << nmb << std::endl;
-    if (nmb > std::numeric_limits<float>::max() || nmb < std::numeric_limits<float>::min())
+        std::cout << "int: " << static_cast<int>(nmb) << std::endl;
+    if (nmb > std::numeric_limits<float>::max() || nmb < (-std::numeric_limits<float>::max()))
         std::cout << "float: " << "Out of bounds" << std::endl;
     else
         std::cout << "float: " << static_cast<float>(nmb) << suffix << "f" << std::endl;
-    if (nmb > std::numeric_limits<double>::max() || nmb < std::numeric_limits<double>::min())
+    if (nmb > std::numeric_limits<double>::max() || nmb < (-std::numeric_limits<double>::max()))
         std::cout << "double: " << "Out of bounds" << std::endl;
     else
         std::cout << "double: " << static_cast<double>(nmb) << suffix << std::endl;
 }
 
-const void printSpecial(const std::string &str)
+void printSpecial(const std::string &str)
 {
     std::cout << "char: impossible" << std::endl;
     std::cout << "int: impossible" << std::endl;
     std::cout << "float: " << str << "f" << std::endl;
     std::cout << "double: " << str << std::endl; 
+}
+
+ScalarConverter::ScalarConverter()
+{
+}
+
+ScalarConverter::ScalarConverter(const ScalarConverter &)
+{
+}
+
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &)
+{
+    return (*this);
+}
+
+ScalarConverter::~ScalarConverter()
+{
 }
 
 void ScalarConverter::convert(const std::string &str)
@@ -161,22 +191,22 @@ void ScalarConverter::convert(const std::string &str)
 
     switch (type)
     {
-        case TypeFlag::Char:
+        case Char:
             printChar(str);
             break;
-        case TypeFlag::Int:
+        case Int:
             printInt(str);
             break;
-        case TypeFlag::Float:
+        case Float:
             printFloat(str);
             break;
-        case TypeFlag::Double:
+        case Double:
             printDouble(str);
             break;
-        case TypeFlag::Special:
+        case Special:
             printSpecial(str);
             break;
-        case TypeFlag::Error:
+        case Error:
             throw std::invalid_argument("Invalid Argument: \"" + str + "\"");
     default:
         break;

@@ -1,10 +1,9 @@
-
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
 #include <iostream>
 
 AForm::AForm()
-: _NAME("No AForm"), _is_signed(false), _SIGN_GRADE(150), _EXEC_GRADE(150) {}
+: _NAME("No Form"), _is_signed(false), _SIGN_GRADE(150), _EXEC_GRADE(150) {}
 
 AForm::AForm(const std::string & name, int sign_grade, int exec_grade)
 : _NAME(name), _is_signed(false), _SIGN_GRADE(sign_grade), _EXEC_GRADE(exec_grade) {
@@ -22,13 +21,13 @@ bool        AForm::get_is_signed() const { return (_is_signed); };
 int         AForm::get_sign_grade() const { return (_SIGN_GRADE); };
 int         AForm::get_exec_grade() const { return (_EXEC_GRADE); };
 
-const char* AForm::GradeTooHighException::what() const noexcept { return ("GradeTooHighException"); }
-const char* AForm::GradeTooLowException::what() const noexcept { return ("GradeTooLowException"); }
+const char* AForm::GradeTooHighException::what() const throw() { return ("GradeTooHighException"); }
+const char* AForm::GradeTooLowException::what() const throw() { return ("GradeTooLowException"); }
 
 void    AForm::beSigned(const Bureaucrat & bur) {
     if (_is_signed == true)
     {
-        std::cout << "AForm is already signed." << std::endl;
+        std::cout << "Form is already signed." << std::endl;
         return ;
     }
     if (bur.getGrade() <= _SIGN_GRADE)
@@ -40,8 +39,14 @@ void    AForm::beSigned(const Bureaucrat & bur) {
     {
         std::cout << bur << "couldn't sign\n" << *this
         << "because: bureaucrat's grade too low" << std::endl;
-        throw AForm::GradeTooLowException();
     }
+}
+
+AForm &AForm::operator=(const AForm& other)
+{
+    if (this == &other) return *this;
+    _is_signed = other._is_signed;
+    return *this;
 }
 
 void AForm::check_grade(const Bureaucrat & bur) {
@@ -54,6 +59,8 @@ void AForm::check_grade(const Bureaucrat & bur) {
         throw AForm::GradeTooLowException();
     }
 }
+
+AForm::~AForm() {};
 
 std::ostream& operator<<(std::ostream & os, const AForm & form) {
     os << "Form:"

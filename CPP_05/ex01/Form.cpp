@@ -1,4 +1,3 @@
-
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
 #include <iostream>
@@ -22,8 +21,8 @@ bool        Form::get_is_signed() const { return (_is_signed); };
 int         Form::get_sign_grade() const { return (_SIGN_GRADE); };
 int         Form::get_exec_grade() const { return (_EXEC_GRADE); };
 
-const char* Form::GradeTooHighException::what() const noexcept { return ("GradeTooHighException"); }
-const char* Form::GradeTooLowException::what() const noexcept { return ("GradeTooLowException"); }
+const char* Form::GradeTooHighException::what() const throw() { return ("GradeTooHighException"); }
+const char* Form::GradeTooLowException::what() const throw() { return ("GradeTooLowException"); }
 
 void    Form::beSigned(const Bureaucrat & bur) {
     if (_is_signed == true)
@@ -42,6 +41,15 @@ void    Form::beSigned(const Bureaucrat & bur) {
         << "because: bureaucrat's grade too low" << std::endl;
     }
 }
+
+Form &Form::operator=(const Form& other)
+{
+    if (this == &other) return *this;
+    _is_signed = other._is_signed;
+    return *this;
+}
+
+Form::~Form() {};
 
 std::ostream& operator<<(std::ostream & os, const Form & form) {
     os << "Form:"
